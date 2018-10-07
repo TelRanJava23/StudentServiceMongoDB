@@ -58,7 +58,17 @@ public class StudentsController {
 	public List<Student> getByName(@PathVariable String name){
 		return studentService.findByNameStartWith(name);
 	}
-
+	
+	@GetMapping(StudentsURI.STUDENTS+"/alefbet/{str}")
+	public List<Student> getStartWithAlefBet(@PathVariable String str){
+		return studentService.findByNameAfterAlefBet(str);
+	}
+	
+	@GetMapping(StudentsURI.STUDENTS+"/{exam}/{score}")
+	List<Student> getBestStudents(@PathVariable String exam, @PathVariable int score){
+		return studentService.getBestStudents(exam, score);
+	}
+	
 }
 
 

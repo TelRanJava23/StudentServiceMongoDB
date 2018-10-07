@@ -1,6 +1,7 @@
 package telran.student.service;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import telran.student.dto.ScoreDto;
 import telran.student.dto.StudentDto;
@@ -21,5 +22,10 @@ public interface IStudentService {
 	boolean addScore(int id, ScoreDto score);
 	
 	List<Student> findByNameStartWith(String name);
+	
+	List<Student> findByNameAfterAlefBet(String name);
+	
+	List<Student> getBestStudents(String exam, int score);
+	
 
 }

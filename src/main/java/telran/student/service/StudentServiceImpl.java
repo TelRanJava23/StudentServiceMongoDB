@@ -1,6 +1,7 @@
 package telran.student.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -88,7 +89,25 @@ public class StudentServiceImpl implements IStudentService {
 
 	@Override
 	public List<Student> findByNameStartWith(String name) {
-		return studentRepository.findByNameRegex(name+".*");
+		return studentRepository.findByNameStartingWith(name);
 	}
 
+	@Override
+	public List<Student> findByNameAfterAlefBet(String name) {
+		
+		return studentRepository.findByNameAfterAlefBet(name)
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Student> getBestStudents(String exam, int score) {
+		return studentRepository.findByDynamicField("scores."+exam, score);
+		
+//		return studentRepository.findAllBy()
+//				.filter(s -> s.getScores().containsKey(exam))
+//				.filter(s -> s.getScores().get(exam) > score)
+//				.collect(Collectors.toList());
+	}
+
+	
 }
